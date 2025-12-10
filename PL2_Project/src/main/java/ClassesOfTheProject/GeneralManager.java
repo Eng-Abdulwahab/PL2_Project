@@ -1,6 +1,6 @@
 package ClassesOfTheProject;
 
-public class GeneralManager extends Person {
+public class GeneralManager extends User {
 
 
 }

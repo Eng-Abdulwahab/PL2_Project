@@ -1,4 +1,4 @@
 package ClassesOfTheProject;
 
-public class TeamLeader extends Person {
+public class TeamLeader extends User {
 }
