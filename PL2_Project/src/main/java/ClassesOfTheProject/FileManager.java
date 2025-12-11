@@ -32,7 +32,7 @@ public class FileManager {
         return false;
     }
 
-    public ArrayList<String> Splitter(ArrayList<String> Line , File file) throws FileNotFoundException {
+    public ArrayList<String> Splitter(String Line , File file) throws FileNotFoundException {
         Scanner reader = new Scanner(file);
 
         String targetLine = String.join(delimiter, Line);
@@ -59,7 +59,7 @@ public class FileManager {
         return null;
     }
 
-    public void addLine(ArrayList<String> Line, File file)  throws IOException {
+    public void addLine(String Line, File file)  throws IOException {
         PrintWriter input = new PrintWriter(new FileWriter(file, true));
         String line = String.join(delimiter, Line);
         input.println(line);
@@ -69,7 +69,7 @@ public class FileManager {
 
     public void deleteLine(String line, File file) throws IOException
     {
-        File tempFile = new File("D:\\tempFile.txt");
+        File tempFile = new File("PL2_Project/src/main/java/ClassesOfTheProject/Files/temp.txt");
 
         Scanner reader = new Scanner(file);
         PrintWriter writer = new PrintWriter(tempFile);

@@ -1,6 +1,9 @@
 package ClassesOfTheProject;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Task {
     private String taskName;
@@ -10,12 +13,19 @@ public class Task {
     private boolean isCompleted;
 
 
-    public Task(String taskName, String taskID, Employee assignedTo, TeamLeader assignedBy, boolean isCompleted) {
+    public Task(String taskName, String taskID, Employee assignedTo, TeamLeader assignedBy, boolean isCompleted) throws IOException {
         this.taskName = taskName;
         this.taskID = taskID;
         this.assignedTo = assignedTo;
         this.assignedBy = assignedBy;
         this.isCompleted = isCompleted;
+
+        String TaskLine = this.taskName + this.taskID ;
+
+        File file = new File("PL2_Project/src/main/java/ClassesOfTheProject/Files/test.txt");
+        FileManager m = new FileManager();
+
+        m.addLine(TaskLine, file);
     }
 
     public String getTaskName() {
@@ -50,11 +60,14 @@ public class Task {
         this.assignedBy = assignedBy;
     }
 
-    public void markAsCompleted(Task task) {
-        this.isCompleted = true;
+    public void markAsCompleted(Task task) throws IOException {
         File file = new File("PL2_Project/src/main/java/ClassesOfTheProject/Files/test.txt");
         FileManager m = new FileManager();
-        m.Splitter();
+
+        String taskLine = getTaskName() + getTaskID();
+        m.deleteLine(taskLine, file);
+
+        this.isCompleted = true;
     }
 
     public boolean isCompleted() {
