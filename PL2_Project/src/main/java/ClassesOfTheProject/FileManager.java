@@ -9,8 +9,6 @@ import java.util.regex.Pattern;
 public class FileManager {
     private final String delimiter = "|//|";
 
-    FileManager() {}
-
     public String getDelimiter() {
         return delimiter;
     }
