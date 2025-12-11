@@ -1,33 +1,29 @@
 package ClassesOfTheProject;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Test {
 
     public static void main(String[] args) throws IOException {
-        FileManager file = new FileManager();
-        File file1 = new File("D:\\test.txt");
-        Scanner reader = new Scanner(file1);
-        User u = new User();
+        FileManager fileManager = new FileManager();
+        File file1 = new File("D:\\test1.txt");
+        File file2 = new File("D:\\test2.txt");
 
-        file.addLine("Abdo", "1597000", "#174", "Admin", file1);
+        ArrayList<String> Line = new ArrayList<>();
+        Line.add("Abdelwahab");
+        Line.add("15948");
+        Line.add("#159");
+        Line.add("TeamLeader");
 
-        while (reader.hasNextLine())
-        {
-            String line = reader.nextLine();
+        fileManager.addLine(Line, file1);
+        fileManager.addLine(Line, file2);
 
-            if(line.contains("Abdo"))
-            {
-                u = file.Splitter(line, file1);
-                System.out.println(u.getUsername());
-                System.out.println(u.getPassword());
-                System.out.println(u.getID());
-                System.out.println(u.getRole());
-            }
-        }
+        ArrayList<String> data = new ArrayList<>();
+        data = fileManager.Splitter(Line, file1);
 
-
+        System.out.println(data);
     }
 
 }

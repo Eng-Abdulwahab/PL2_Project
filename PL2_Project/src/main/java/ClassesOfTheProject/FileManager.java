@@ -1,6 +1,8 @@
 package ClassesOfTheProject;
 
 import java.io.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -13,24 +15,45 @@ public class FileManager {
         return delimiter;
     }
 
-    public User Splitter(String Line ,File file) throws FileNotFoundException {
+    public boolean findLine(ArrayList<String> Line, File file) throws FileNotFoundException
+    {
         Scanner reader = new Scanner(file);
 
+        String targetLine = String.join(delimiter, Line);
+
+        while(reader.hasNextLine())
+        {
+            String currentLine = reader.nextLine();
+
+            if(currentLine.equals(targetLine))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public ArrayList<String> Splitter(ArrayList<String> Line , File file) throws FileNotFoundException {
+        Scanner reader = new Scanner(file);
+
+        String targetLine = String.join(delimiter, Line);
         while(reader.hasNextLine())
         {
             String CurrentLine = reader.nextLine();
 
-            if(CurrentLine.equals(Line))
+            if(CurrentLine.equals(targetLine))
             {
-                String[] Info = CurrentLine.split(Pattern.quote(delimiter));
+                String[] parts = CurrentLine.split(Pattern.quote(delimiter));
+                ArrayList<String> info = new ArrayList<>();
 
-                String userName = Info[0];
-                String password = Info[1];
-                String ID = Info[2];
-                String role = Info[3];
+                for(String part: parts)
+                {
+                    info.add(part);
+                }
 
 
-                return new User(userName, password, ID, role);
+                return info;
             }
         }
         reader.close();
@@ -38,12 +61,13 @@ public class FileManager {
         return null;
     }
 
-    public void addLine(String name, String password, String id, String role, File file)  throws IOException {
+    public void addLine(ArrayList<String> Line, File file)  throws IOException {
         PrintWriter input = new PrintWriter(new FileWriter(file, true));
-        String line = String.join(delimiter, name, password, id, role);
+        String line = String.join(delimiter, Line);
         input.println(line);
         input.close();
     }
+
 
     public void deleteLine(String line, File file) throws IOException
     {
