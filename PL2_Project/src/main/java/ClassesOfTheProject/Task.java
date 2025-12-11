@@ -13,19 +13,12 @@ public class Task {
     private boolean isCompleted;
 
 
-    public Task(String taskName, String taskID, Employee assignedTo, TeamLeader assignedBy, boolean isCompleted) throws IOException {
+    public Task(String taskName, String taskID, Employee assignedTo, TeamLeader assignedBy, boolean isCompleted)  {
         this.taskName = taskName;
         this.taskID = taskID;
         this.assignedTo = assignedTo;
         this.assignedBy = assignedBy;
         this.isCompleted = isCompleted;
-
-        String TaskLine = this.taskName + this.taskID ;
-
-        File file = new File("PL2_Project/src/main/java/ClassesOfTheProject/Files/test.txt");
-        FileManager m = new FileManager();
-
-        m.addLine(TaskLine, file);
     }
 
     public String getTaskName() {
@@ -61,12 +54,6 @@ public class Task {
     }
 
     public void markAsCompleted(Task task) throws IOException {
-        File file = new File("PL2_Project/src/main/java/ClassesOfTheProject/Files/test.txt");
-        FileManager m = new FileManager();
-
-        String taskLine = getTaskName() + getTaskID();
-        m.deleteLine(taskLine, file);
-
         this.isCompleted = true;
     }
 
