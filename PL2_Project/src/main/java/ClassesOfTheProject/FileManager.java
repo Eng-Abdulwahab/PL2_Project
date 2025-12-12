@@ -26,6 +26,13 @@ public class FileManager {
         reader.close();
         return "not found";
     }
+    // isExist
+    public boolean isExist(String id,File file) throws FileNotFoundException{
+        if(findLine(id,file).equals("not found")){
+            return false;
+        }
+        return true;
+    }
     public ArrayList<String> Splitter(String fullLine) {
         String[] parts = fullLine.split(Pattern.quote(delimiter));
         ArrayList<String> result = new ArrayList<>();
