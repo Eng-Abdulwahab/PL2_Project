@@ -48,7 +48,7 @@ public class FileManager {
         try (Scanner sc = new Scanner(file)) {
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
-                String[] parts = line.split(delimiter);
+                String[] parts = line.split(Pattern.quote(delimiter));
 
                 if (parts.length == 3) {
                     String usernameFile = parts[0].trim();
@@ -62,9 +62,12 @@ public class FileManager {
                 }
             }
         } catch (Exception e) {
+            e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
+            alert.setTitle("File Error");
             alert.setHeaderText(null);
+            alert.setContentText("Error reading file: " + e.getMessage());
+            alert.showAndWait();
         }
         return false;
     }
