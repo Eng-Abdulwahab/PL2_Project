@@ -1,3 +1,3 @@
 Abdo|//|2807|//|Employee
 Abdelwahab|//|0592|//|Admin
-Abdullah|//|0588|//|General Manager
+Abdullah|//|0588|//|GeneralManager
