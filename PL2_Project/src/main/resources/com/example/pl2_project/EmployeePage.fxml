@@ -1,45 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" spacing="15.0" style="-fx-background-color: #f4f4f4;"
-      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" spacing="15.0" style="-fx-background-color: #f4f4f4;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pl2_project.EmployeePageController">
 
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
-    <Label text="Employee Module - Unified Dashboard" style="-fx-text-fill: #333333;">
+    <Label style="-fx-text-fill: #333333;" text="Employee DashBoard">
         <font>
             <Font size="22.0" />
         </font>
     </Label>
     <Separator />
 
-    <TitledPane animated="false" text="⌚ Clock In/Out &amp; Working Hours Calculation" collapsible="false">
+    <TitledPane animated="false" collapsible="false" text="⌚ Clock In/Out &amp; Working Hours Calculation">
         <VBox spacing="10.0" style="-fx-padding: 10;">
             <HBox alignment="CENTER_LEFT" spacing="10.0">
-                <Button fx:id="btnClockIn" text="Clock In Now" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" />
-                <Button fx:id="btnClockOut" text="Clock Out Now"  disable="true" style="-fx-background-color: #F44336; -fx-text-fill: white;" />
-                <Label fx:id="lblCurrentStatus" text="Status: Logged Out" style="-fx-font-weight: bold; -fx-text-fill: #007bff;" HBox.hgrow="ALWAYS" />
+                <Button fx:id="btnClockIn" onAction="#handleClockAction" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Clock In Now" />
+                <Button fx:id="btnClockOut" disable="true" onAction="#handleClockAction" style="-fx-background-color: #F44336; -fx-text-fill: white;" text="Clock Out Now" />
+                <Label fx:id="lblCurrentStatus" style="-fx-font-weight: bold; -fx-text-fill: #007bff;" text="Status: Logged Out" HBox.hgrow="ALWAYS" />
             </HBox>
             <Label text="Monthly Attendance Record:" />
             <TableView fx:id="attendanceTable" prefHeight="150.0">
                 <columns>
-                    <TableColumn fx:id="colDate" prefWidth="100.0" text="Date" />
-                    <TableColumn fx:id="colInTime" prefWidth="100.0" text="Clock In" />
-                    <TableColumn fx:id="colOutTime" prefWidth="100.0" text="Clock Out" />
-                    <TableColumn fx:id="colDailyHours" prefWidth="100.0" text="Hours Worked" />
+                    <TableColumn fx:id="colInTime" prefWidth="263.20003068447113" text="Clock In" />
+                    <TableColumn fx:id="colOutTime" prefWidth="287.9999694824219" text="Clock Out" />
+                    <TableColumn fx:id="colDailyHours" prefWidth="115.20001220703125" text="Hours Worked" />
                 </columns>
             </TableView>
-            <Label fx:id="lblTotalMonthlyHours" text="Total Monthly Hours: 0.0" style="-fx-font-weight: bold; -fx-text-fill: #009688;" />
+            <Label fx:id="lblTotalMonthlyHours" style="-fx-font-weight: bold; -fx-text-fill: #009688;" text="Total Monthly Hours: 0.0" />
         </VBox>
     </TitledPane>
 
-    <TitledPane animated="false" text="📋 Assigned Tasks (View &amp; Complete)" collapsible="false">
+    <TitledPane animated="false" collapsible="false" text="📋 Assigned Tasks (View &amp; Complete)">
         <VBox spacing="10.0" style="-fx-padding: 10;">
             <Label text="Check the box when the task is finished (e):" />
             <TableView fx:id="tasksTable" prefHeight="150.0">
@@ -54,7 +60,7 @@
     </TitledPane>
 
     <HBox spacing="15" VBox.vgrow="ALWAYS">
-        <TitledPane animated="false" text="🏖️ Request Vacation" HBox.hgrow="ALWAYS" collapsible="false">
+        <TitledPane animated="false" collapsible="false" text="🏖️ Request Vacation" HBox.hgrow="ALWAYS">
             <VBox spacing="8.0" style="-fx-padding: 10;">
                 <Label text="Start Date:" />
                 <DatePicker fx:id="dpStartDate" />
@@ -62,11 +68,11 @@
                 <DatePicker fx:id="dpEndDate" />
                 <Label text="Reason:" />
                 <TextArea fx:id="txtVacationReason" prefRowCount="3" wrapText="true" />
-                <Button text="Submit Request" style="-fx-background-color: #2196F3; -fx-text-fill: white;" />
+                <Button fx:id="btnSubmit" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Submit Request" />
             </VBox>
         </TitledPane>
 
-        <TitledPane animated="false" text="🚨 View Penalties" HBox.hgrow="ALWAYS" collapsible="false">
+        <TitledPane animated="false" collapsible="false" text="🚨 View Penalties" HBox.hgrow="ALWAYS">
             <VBox spacing="10.0" style="-fx-padding: 10;">
                 <Label text="Recorded Penalties:" />
                 <TableView fx:id="penaltiesTable" prefHeight="170.0">

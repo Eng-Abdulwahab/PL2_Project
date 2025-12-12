@@ -54,7 +54,7 @@ public class LoginPageController implements Initializable {
     public void handleButtonAction(ActionEvent actionEvent) throws IOException {
         if(actionEvent.getSource() == btnLogin)
         {
-            String selectedRole = roleComboBox.getValue().replace(" ", "");
+            String selectedRole = roleComboBox.getValue();
             String FXMLfile = "";
             String username = txtUser.getText();
             String password = txtPass.getText();
@@ -97,7 +97,7 @@ public class LoginPageController implements Initializable {
                 case "Employee":
                     FXMLfile = "EmployeePage.fxml";
                     break;
-                case "GeneralManager":
+                case "ProjectManager":
                     FXMLfile = "GeneralManagerPage.fxml";
                     break;
                 case "TeamLeader":

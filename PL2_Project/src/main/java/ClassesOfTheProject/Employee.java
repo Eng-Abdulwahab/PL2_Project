@@ -16,6 +16,9 @@ public class Employee extends User {
         this.entryTime = entryTime;
         this.exitTime = exitTime;
     }
+
+    public Employee()
+    {}
     //GETTER & SETTER ENTRY TIME
     public String getEntryTime() {
         return this.entryTime;
