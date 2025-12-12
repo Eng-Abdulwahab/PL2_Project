@@ -33,8 +33,8 @@ public class Employee extends User {
         this.exitTime = exitTime;
     }
     private final FileManager FManager = new FileManager();
-    private final File tasksFile = new File("C:/Users/A&M/Documents/GitHub/PL2_Project/PL2_Project/src/main/resources/Files/tasks.txt");
-    private final File penaltiesFile = new File("C:/Users/A&M/Documents/GitHub/PL2_Project/PL2_Project/src/main/resources/Files/penalties.txt");
+    private final File tasksFile = new File("PL2_Project/src/main/java/ClassesOfTheProject/Files/tasksFile.txt");
+    private final File penaltiesFile = new File("PL2_Project/src/main/java/ClassesOfTheProject/Files/penaltiesFile.txt");
     public String viewTasks() throws FileNotFoundException {
         String targetLine = FManager.findLine(getID(), tasksFile);
 
