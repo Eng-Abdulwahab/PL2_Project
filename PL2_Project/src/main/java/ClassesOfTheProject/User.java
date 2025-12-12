@@ -1,12 +1,18 @@
 package ClassesOfTheProject;
 
+import java.util.Random;
+
 public class User {
     private String username;
     private String password;
     private String ID;
     private String role;
+    Random random = new Random();
 
-    User() {}
+    User() {
+        int Id = random.nextInt(1,1000);
+        ID = Integer.toString(Id);
+    }
 
     User(String username, String pass, String ID, String role)
     {

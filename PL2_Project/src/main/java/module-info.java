@@ -10,6 +10,7 @@ module com.example.pl2_project {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires jdk.unsupported.desktop;
+    requires javafx.graphics;
 
 
     opens com.example.pl2_project to javafx.fxml;

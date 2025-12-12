@@ -37,16 +37,16 @@
                   </Label>
                   <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="158.0" prefWidth="178.0" spacing="15.0">
                      <children>
-                        <TextField prefHeight="28.0" prefWidth="178.0" promptText="Username">
+                        <TextField fx:id="txtUser" prefHeight="28.0" prefWidth="178.0" promptText="Username">
                            <font>
                               <Font size="13.0" />
                            </font></TextField>
-                        <PasswordField prefHeight="31.0" prefWidth="178.0" promptText="Password">
+                        <PasswordField fx:id="txtPass" prefHeight="31.0" prefWidth="178.0" promptText="Password">
                            <font>
                               <Font size="13.0" />
                            </font></PasswordField>
                         <ComboBox fx:id="roleComboBox" onAction="#handleUserRole" prefWidth="150.0" promptText="Role" style="-fx-background-color: #e9ecef;" />
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="83.0" style="-fx-background-radius: 6px; -fx-background-color: teal;" text="Login" textFill="WHITE">
+                        <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="25.0" prefWidth="83.0" style="-fx-background-radius: 6px; -fx-background-color: teal;" text="Login" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Bold" size="12.0" />
                            </font>

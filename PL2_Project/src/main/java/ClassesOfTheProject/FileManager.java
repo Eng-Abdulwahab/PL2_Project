@@ -1,5 +1,7 @@
 package ClassesOfTheProject;
 
+import javafx.scene.control.Alert;
+
 import java.io.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ public class FileManager {
         reader.close();
         return "not found";
     }
+
     // isExist
     public boolean isExist(String id,File file) throws FileNotFoundException{
         if(findLine(id,file).equals("not found")){
@@ -33,6 +36,40 @@ public class FileManager {
         }
         return true;
     }
+
+    public boolean isRoleExist(String role,File file) throws FileNotFoundException{
+        if(findLine(role,file).equals("not found")){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean checkUser(String username, String password, String role, File file) {
+        try (Scanner sc = new Scanner(file)) {
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                String[] parts = line.split(delimiter);
+
+                if (parts.length == 3) {
+                    String usernameFile = parts[0].trim();
+                    String passwordFile = parts[1].trim();
+                    String roleFile = parts[2].trim();
+
+                    if (usernameFile.equals(username) && passwordFile.equals(password) && roleFile.equals(role)) {
+
+                        return true;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+        }
+        return false;
+    }
+
+
     public ArrayList<String> Splitter(String fullLine) {
         String[] parts = fullLine.split(Pattern.quote(delimiter));
         ArrayList<String> result = new ArrayList<>();
