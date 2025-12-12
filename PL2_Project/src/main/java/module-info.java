@@ -9,6 +9,7 @@ module com.example.pl2_project {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires jdk.unsupported.desktop;
 
 
     opens com.example.pl2_project to javafx.fxml;

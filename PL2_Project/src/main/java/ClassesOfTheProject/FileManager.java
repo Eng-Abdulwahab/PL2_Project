@@ -13,52 +13,29 @@ public class FileManager {
         return delimiter;
     }
 
-    public boolean findLine(ArrayList<String> Line, File file) throws FileNotFoundException
-    {
+
+    public String findLine(String id, File file) throws FileNotFoundException {
         Scanner reader = new Scanner(file);
-
-        String targetLine = String.join(delimiter, Line);
-
-        while(reader.hasNextLine())
-        {
+        while(reader.hasNextLine()) {
             String currentLine = reader.nextLine();
-
-            if(currentLine.equals(targetLine))
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    public ArrayList<String> Splitter(String Line , File file) throws FileNotFoundException {
-        Scanner reader = new Scanner(file);
-
-        String targetLine = String.join(delimiter, Line);
-        while(reader.hasNextLine())
-        {
-            String CurrentLine = reader.nextLine();
-
-            if(CurrentLine.equals(targetLine))
-            {
-                String[] parts = CurrentLine.split(Pattern.quote(delimiter));
-                ArrayList<String> info = new ArrayList<>();
-
-                for(String part: parts)
-                {
-                    info.add(part);
-                }
-
-
-                return info;
+            if(currentLine.startsWith(id + "|//|")) {
+                reader.close();
+                return currentLine;
             }
         }
         reader.close();
-
-        return null;
+        return "not found";
     }
+    public ArrayList<String> Splitter(String fullLine) {
+        String[] parts = fullLine.split(Pattern.quote(delimiter));
+        ArrayList<String> result = new ArrayList<>();
 
+        for (String p : parts) {
+            result.add(p);
+        }
+
+        return result;
+    }
     public void addLine(String Line, File file)  throws IOException {
         PrintWriter input = new PrintWriter(new FileWriter(file, true));
         String line = String.join(delimiter, Line);
