@@ -29,8 +29,8 @@
     <TitledPane animated="false" collapsible="false" text="⌚ Clock In/Out &amp; Working Hours Calculation">
         <VBox spacing="10.0" style="-fx-padding: 10;">
             <HBox alignment="CENTER_LEFT" spacing="10.0">
-                <Button fx:id="btnClockIn" onAction="#handleClockAction" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Clock In Now" />
-                <Button fx:id="btnClockOut" disable="true" onAction="#handleClockAction" style="-fx-background-color: #F44336; -fx-text-fill: white;" text="Clock Out Now" />
+                <Button fx:id="btnClockIn" onAction="#handleClockAction" text="Clock In Now" />
+                <Button fx:id="btnClockOut" onAction="#handleClockAction" text="Clock Out Now" />
                 <Label fx:id="lblCurrentStatus" style="-fx-font-weight: bold; -fx-text-fill: #007bff;" text="Status: Logged Out" HBox.hgrow="ALWAYS" />
             </HBox>
             <Label text="Monthly Attendance Record:" />
@@ -50,10 +50,11 @@
             <Label text="Check the box when the task is finished (e):" />
             <TableView fx:id="tasksTable" prefHeight="150.0">
                 <columns>
-                    <TableColumn fx:id="colTaskName" prefWidth="250.0" text="Task Name" />
-                    <TableColumn fx:id="colProject" prefWidth="100.0" text="Project" />
-                    <TableColumn fx:id="colDueDate" prefWidth="120.0" text="Due Date" />
-                    <TableColumn fx:id="colTaskCompleted" prefWidth="70.0" text="Done" />
+                    <TableColumn fx:id="colTaskId" prefWidth="113.59997117519379" text="Task Id" />
+                    <TableColumn fx:id="colTaskName" prefWidth="128.80005645751953" text="Task Name" />
+                    <TableColumn fx:id="colProject" prefWidth="132.8000030517578" text="Project" />
+                    <TableColumn fx:id="colDueDate" prefWidth="217.59994506835938" text="Due Date" />
+               <TableColumn fx:id="colTaskCompleted" prefWidth="84.800048828125" text="completed" />
                 </columns>
             </TableView>
         </VBox>

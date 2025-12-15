@@ -1,67 +1,52 @@
 package ClassesOfTheProject;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 public class Task {
-    private String taskName;
-    private String taskID;
-    private Employee assignedTo;
-    private TeamLeader assignedBy;
-    private boolean isCompleted;
+    private SimpleStringProperty taskName;
+    private SimpleStringProperty taskID;
+    private SimpleStringProperty deadline;
+    private SimpleStringProperty project;
+    private SimpleBooleanProperty completed;
 
-
-    public Task(String taskName, String taskID, Employee assignedTo, TeamLeader assignedBy, boolean isCompleted)  {
-        this.taskName = taskName;
-        this.taskID = taskID;
-        this.assignedTo = assignedTo;
-        this.assignedBy = assignedBy;
-        this.isCompleted = isCompleted;
+    public Task(String taskID, String taskName, String project ,String dueDate, boolean completed) {
+        this.taskName = new SimpleStringProperty(taskName);
+        this.taskID = new SimpleStringProperty(taskID);
+        this.project = new SimpleStringProperty(project);
+        this.deadline = new SimpleStringProperty(dueDate);
+        this.completed = new SimpleBooleanProperty(completed);
     }
 
     public String getTaskName() {
-        return taskName;
+        return taskName.get();
     }
 
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
-    }
 
     public String getTaskID() {
-        return taskID;
+        return taskID.get();
     }
 
-    public void setTaskID(String taskID) {
-        this.taskID = taskID;
-    }
-
-    public Employee getAssignedTo() {
-        return assignedTo;
-    }
-
-    public void setAssignedTo(Employee assignedTo) {
-        this.assignedTo = assignedTo;
-    }
-
-    public TeamLeader getAssignedBy() {
-        return assignedBy;
-    }
-
-    public void setAssignedBy(TeamLeader assignedBy) {
-        this.assignedBy = assignedBy;
-    }
-
-    public void markAsCompleted(Task task) throws IOException {
-        this.isCompleted = true;
+    public String getDeadline() {
+        return deadline.get();
     }
 
     public boolean isCompleted() {
-        return isCompleted;
+        return completed.get();
     }
 
-    public void setCompleted(boolean completed) {
-        isCompleted = completed;
+    public String getProject()
+    {
+        return project.get();
+    }
+
+    public SimpleBooleanProperty completedProperty() {
+        return completed;
     }
 }

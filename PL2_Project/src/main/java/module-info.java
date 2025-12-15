@@ -14,5 +14,6 @@ module com.example.pl2_project {
 
 
     opens com.example.pl2_project to javafx.fxml;
+    opens ClassesOfTheProject to javafx.base, javafx.fxml;
     exports com.example.pl2_project;
 }

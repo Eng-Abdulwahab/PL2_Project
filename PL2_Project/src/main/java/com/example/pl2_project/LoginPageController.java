@@ -48,7 +48,7 @@ public class LoginPageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        roleComboBox.getItems().addAll("Admin", "Employee", "Team Leader", "Project Manager");
+        roleComboBox.getItems().addAll("Admin", "Employee", "TeamLeader", "ProjectManager");
     }
 
     public void handleButtonAction(ActionEvent actionEvent) throws IOException {
@@ -98,7 +98,7 @@ public class LoginPageController implements Initializable {
                     FXMLfile = "EmployeePage.fxml";
                     break;
                 case "ProjectManager":
-                    FXMLfile = "GeneralManagerPage.fxml";
+                    FXMLfile = "ProjectManagerPage.fxml";
                     break;
                 case "TeamLeader":
                     FXMLfile = "TeamLeaderPage.fxml";
