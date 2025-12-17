@@ -50,10 +50,10 @@ public class FileManager {
                 String line = sc.nextLine();
                 String[] parts = line.split(Pattern.quote(delimiter));
 
-                if (parts.length == 3) {
-                    String usernameFile = parts[0].trim();
-                    String passwordFile = parts[1].trim();
-                    String roleFile = parts[2].trim();
+                if (parts.length == 4) {
+                    String usernameFile = parts[1].trim();
+                    String passwordFile = parts[2].trim();
+                    String roleFile = parts[3].trim();
 
                     if (usernameFile.equals(username) && passwordFile.equals(password) && roleFile.equals(role)) {
 
