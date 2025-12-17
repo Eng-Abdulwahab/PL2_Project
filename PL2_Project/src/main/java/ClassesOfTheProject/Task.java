@@ -4,24 +4,19 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-
 public class Task {
     private SimpleStringProperty taskName;
     private SimpleStringProperty taskID;
     private SimpleStringProperty deadline;
     private SimpleStringProperty project;
-    private SimpleBooleanProperty completed;
+    private SimpleStringProperty completed;
 
-    public Task(String taskID, String taskName, String project ,String dueDate, boolean completed) {
+    public Task(String taskID, String taskName, String project ,String dueDate, String completed) {
         this.taskName = new SimpleStringProperty(taskName);
         this.taskID = new SimpleStringProperty(taskID);
         this.project = new SimpleStringProperty(project);
         this.deadline = new SimpleStringProperty(dueDate);
-        this.completed = new SimpleBooleanProperty(completed);
+        this.completed = new SimpleStringProperty(completed);
     }
 
     public String getTaskName() {
@@ -37,16 +32,21 @@ public class Task {
         return deadline.get();
     }
 
-    public boolean isCompleted() {
-        return completed.get();
-    }
 
     public String getProject()
     {
         return project.get();
     }
 
-    public SimpleBooleanProperty completedProperty() {
+    public String getCompletedString() {
+        return String.valueOf(completed.get());
+    }
+
+    public SimpleStringProperty completedProperty() {
         return completed;
+    }
+
+    public void setCompleted(String completed) {
+        this.completed.set(completed);
     }
 }

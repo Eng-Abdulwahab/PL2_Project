@@ -91,28 +91,28 @@ public class FileManager {
     }
 
 
-    public void deleteLine(String line, File file) throws IOException
-    {
-        File tempFile = new File("PL2_Project/src/main/java/ClassesOfTheProject/Files/temp.txt");
+public void deleteLine(String line, File file) throws IOException {
 
-        Scanner reader = new Scanner(file);
-        PrintWriter writer = new PrintWriter(tempFile);
+    File tempFile = new File("PL2_Project/src/main/java/ClassesOfTheProject/Files/temp.txt");
 
-        while(reader.hasNextLine())
-        {
+    try (Scanner reader = new Scanner(file);
+         PrintWriter writer = new PrintWriter(tempFile)) {
+
+        while (reader.hasNextLine()) {
             String currentLine = reader.nextLine();
 
-            if(!currentLine.equals(line))
-            {
+            if (!currentLine.trim().equals(line.trim())) {
                 writer.println(currentLine);
             }
         }
-
-        reader.close();
-        writer.close();
-
-        file.delete();
-        tempFile.renameTo(file);
     }
-}
+
+    if (!file.delete()) {
+        throw new IOException("Failed to delete original file");
+    }
+
+    if (!tempFile.renameTo(file)) {
+        throw new IOException("Failed to rename temp file");
+    }
+}}
 

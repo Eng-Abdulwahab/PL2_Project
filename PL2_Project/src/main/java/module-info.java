@@ -2,6 +2,7 @@ module com.example.pl2_project {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
+    requires javafx.graphics;
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
@@ -10,10 +11,9 @@ module com.example.pl2_project {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires jdk.unsupported.desktop;
-    requires javafx.graphics;
-
 
     opens com.example.pl2_project to javafx.fxml;
     opens ClassesOfTheProject to javafx.base, javafx.fxml;
+
     exports com.example.pl2_project;
 }

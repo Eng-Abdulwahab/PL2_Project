@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -26,7 +27,7 @@
     </Label>
     <Separator />
 
-    <TitledPane animated="false" collapsible="false" text="⌚ Clock In/Out &amp; Working Hours Calculation">
+    <TitledPane animated="false" collapsible="false" text="Clock In/Out &amp; Working Hours Calculation">
         <VBox spacing="10.0" style="-fx-padding: 10;">
             <HBox alignment="CENTER_LEFT" spacing="10.0">
                 <Button fx:id="btnClockIn" onAction="#handleClockAction" text="Clock In Now" />
@@ -41,27 +42,28 @@
                     <TableColumn fx:id="colDailyHours" prefWidth="115.20001220703125" text="Hours Worked" />
                 </columns>
             </TableView>
-            <Label fx:id="lblTotalMonthlyHours" style="-fx-font-weight: bold; -fx-text-fill: #009688;" text="Total Monthly Hours: 0.0" />
         </VBox>
     </TitledPane>
 
-    <TitledPane animated="false" collapsible="false" text="📋 Assigned Tasks (View &amp; Complete)">
-        <VBox spacing="10.0" style="-fx-padding: 10;">
-            <Label text="Check the box when the task is finished (e):" />
-            <TableView fx:id="tasksTable" prefHeight="150.0">
+    <TitledPane animated="false" collapsible="false" text="Assigned Tasks (View &amp; Complete)">
+        <VBox prefHeight="425.0" prefWidth="977.0" spacing="10.0" style="-fx-padding: 10;">
+            <Label text="Select the task when it is finished:" />
+         <ComboBox fx:id="availTasks" prefWidth="150.0" promptText="Tasks" />
+         <Button fx:id="btnFinishTask" mnemonicParsing="false" onAction="#handleFinishTaskAction" prefHeight="26.0" prefWidth="149.0" text="Finish Task" />
+            <TableView fx:id="tasksTable" prefHeight="406.0" prefWidth="930.0">
                 <columns>
                     <TableColumn fx:id="colTaskId" prefWidth="113.59997117519379" text="Task Id" />
                     <TableColumn fx:id="colTaskName" prefWidth="128.80005645751953" text="Task Name" />
                     <TableColumn fx:id="colProject" prefWidth="132.8000030517578" text="Project" />
                     <TableColumn fx:id="colDueDate" prefWidth="217.59994506835938" text="Due Date" />
-               <TableColumn fx:id="colTaskCompleted" prefWidth="84.800048828125" text="completed" />
+               <TableColumn fx:id="colCompleted" prefWidth="84.7999267578125" text="Completed" />
                 </columns>
             </TableView>
         </VBox>
     </TitledPane>
 
     <HBox spacing="15" VBox.vgrow="ALWAYS">
-        <TitledPane animated="false" collapsible="false" text="🏖️ Request Vacation" HBox.hgrow="ALWAYS">
+        <TitledPane animated="false" collapsible="false" text="Request Vacation" HBox.hgrow="ALWAYS">
             <VBox spacing="8.0" style="-fx-padding: 10;">
                 <Label text="Start Date:" />
                 <DatePicker fx:id="dpStartDate" />
@@ -69,18 +71,17 @@
                 <DatePicker fx:id="dpEndDate" />
                 <Label text="Reason:" />
                 <TextArea fx:id="txtVacationReason" prefRowCount="3" wrapText="true" />
-                <Button fx:id="btnSubmit" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Submit Request" />
+                <Button fx:id="btnSubmit" onAction="#handleVacationAction" text="Submit Request" />
             </VBox>
         </TitledPane>
 
-        <TitledPane animated="false" collapsible="false" text="🚨 View Penalties" HBox.hgrow="ALWAYS">
+        <TitledPane animated="false" collapsible="false" text="View Penalties" HBox.hgrow="ALWAYS">
             <VBox spacing="10.0" style="-fx-padding: 10;">
                 <Label text="Recorded Penalties:" />
                 <TableView fx:id="penaltiesTable" prefHeight="170.0">
                     <columns>
                         <TableColumn fx:id="colPenaltyDate" prefWidth="100.0" text="Date" />
-                        <TableColumn fx:id="colPenaltyReason" prefWidth="150.0" text="Reason" />
-                        <TableColumn fx:id="colPenaltyAmount" prefWidth="80.0" text="Amount (USD)" />
+                        <TableColumn fx:id="colPenaltyReason" prefWidth="219.19995880126953" text="Reason" />
                     </columns>
                 </TableView>
             </VBox>

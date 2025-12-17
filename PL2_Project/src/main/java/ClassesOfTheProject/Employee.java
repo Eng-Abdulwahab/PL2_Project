@@ -1,4 +1,8 @@
 package ClassesOfTheProject;
+import javafx.beans.property.SimpleStringProperty;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.io.*;
@@ -7,70 +11,51 @@ import java.util.Scanner;
 
 public class Employee extends User {
 
-    private String entryTime;
-    private String exitTime;
+    private SimpleStringProperty entryTime;
+    private SimpleStringProperty exitTime;
+    private SimpleStringProperty hoursWorked;
 
     //CONSTRUCTOR
-    public Employee(String entryTime, String exitTime, String username, String password, String ID, String role) {
-        super(username, password, ID, role);
-        this.entryTime = entryTime;
-        this.exitTime = exitTime;
+    public Employee(String entryTime, String exitTime, String hoursWorked) {
+        this.entryTime = new SimpleStringProperty(entryTime);
+        this.exitTime = new SimpleStringProperty(exitTime);
+        this.hoursWorked = new SimpleStringProperty(hoursWorked);
     }
 
-    public Employee()
-    {}
-    //GETTER & SETTER ENTRY TIME
+
     public String getEntryTime() {
-        return this.entryTime;
+        return entryTime.get();
     }
 
-    public void setEntryTime( String entryTime) {
-        this.entryTime = entryTime;
+    public SimpleStringProperty entryTimeProperty() {
+        return entryTime;
     }
-    //GETTER & SETTER EXIST  TIME
+
+    public void setEntryTime(String entryTime) {
+        this.entryTime.set(entryTime);
+    }
+
     public String getExitTime() {
-        return this.exitTime;
+        return exitTime.get();
+    }
+
+    public SimpleStringProperty exitTimeProperty() {
+        return exitTime;
     }
 
     public void setExitTime(String exitTime) {
-        this.exitTime = exitTime;
-    }
-    private final FileManager FManager = new FileManager();
-    private final File tasksFile = new File("PL2_Project/src/main/java/ClassesOfTheProject/Files/tasksFile.txt");
-    private final File penaltiesFile = new File("PL2_Project/src/main/java/ClassesOfTheProject/Files/penaltiesFile.txt");
-    public String viewTasks() throws FileNotFoundException {
-        String targetLine = FManager.findLine(getID(), tasksFile);
-
-        if (targetLine.equals("not found")) {
-            return "No tasks found.";
-        }
-
-        ArrayList<String> parts = FManager.Splitter(targetLine);
-
-        for (String p : parts) {
-            System.out.println(p);
-        }
-
-        return targetLine;
+        this.exitTime.set(exitTime);
     }
 
-    public String viewpenalities() throws FileNotFoundException {
-        String targetLine = FManager.findLine(getID(), penaltiesFile);
-
-        if (targetLine.equals("not found")) {
-            return "No penalties found.";
-        }
-
-        ArrayList<String> parts = FManager.Splitter(targetLine);
-
-        for (String p : parts) {
-            System.out.println(p);
-        }
-
-        return targetLine;
+    public String getHoursWorked() {
+        return hoursWorked.get();
     }
-    public String requestVacuation(){
-       //i am in a bit of hurray can we talk another time وعلشان الناس المحنكه خالي من الai الكود كله
-       return " "; //والله عاملها فاضيها علشان لو معملتش الreturn بيدي error
+
+    public SimpleStringProperty hoursWorkedProperty() {
+        return hoursWorked;
+    }
+
+    public void setHoursWorked(String hoursWorked) {
+        this.hoursWorked.set(hoursWorked);
     }
 }

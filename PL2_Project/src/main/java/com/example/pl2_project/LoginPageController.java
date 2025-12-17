@@ -36,11 +36,7 @@ public class LoginPageController implements Initializable {
     @FXML
     FileManager fm = new FileManager();
 
-    @FXML
     File file = new File("PL2_Project/src/main/java/ClassesOfTheProject/Files/test.txt");
-
-
-
 
     public void handleUserRole(ActionEvent actionEvent) {
 
