@@ -18,6 +18,9 @@ public class User {
         this.role = new SimpleStringProperty(role);
     }
 
+    public User() {
+    }
+
     public String getUsername() {
         return username.get();
     }

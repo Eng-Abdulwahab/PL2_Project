@@ -15,6 +15,8 @@ public class Employee extends User {
     private SimpleStringProperty exitTime;
     private SimpleStringProperty hoursWorked;
 
+
+
     //CONSTRUCTOR
     public Employee(String entryTime, String exitTime, String hoursWorked) {
         this.entryTime = new SimpleStringProperty(entryTime);
