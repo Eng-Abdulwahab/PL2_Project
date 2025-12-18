@@ -1,6 +1,7 @@
 package com.example.pl2_project;
 
 import ClassesOfTheProject.FileManager;
+import ClassesOfTheProject.Project;
 import ClassesOfTheProject.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -54,16 +55,18 @@ public class AdminPageController implements Initializable {
     @FXML
     public TableColumn<User, String> columnRole;
     @FXML
-    public TableView projectsTable;
+    public TableView<Project> projectsTable;
     @FXML
-    public TableColumn projectName;
+    public TableColumn<Project, String> projectName;
     @FXML
-    public TableColumn ProjectID;
+    public TableColumn<Project, String> projectID;
 
     File file = new File("PL2_Project/src/main/java/ClassesOfTheProject/Files/test.txt");
+    File projectFile = new File("PL2_Project/src/main/java/ClassesOfTheProject/Files/project.txt");
     FileManager FM = new FileManager();
 
     private ObservableList<User> userList = FXCollections.observableArrayList();
+    private ObservableList<Project> projectList = FXCollections.observableArrayList();
 
     public void viewUsers() {
         userList.clear();
@@ -83,17 +86,40 @@ public class AdminPageController implements Initializable {
         usersTable.setItems(userList);
     }
 
+    public void viewProjects()
+    {
+        try (Scanner scanner = new Scanner(projectFile)) {
+            while(scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                ArrayList<String> list = FM.Splitter(line);
+                Project project = new Project(list.get(0),list.get(1),Double.parseDouble(list.get(2)),Boolean.parseBoolean(list.get(3)));
+                projectList.add(project);
+            }
+        } catch(IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("File Error");
+            alert.show();
+        }
+
+        projectsTable.setItems(projectList);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         add_Role_CB.getItems().addAll("Admin", "Employee", "TeamLeader", "ProjectManager");
         update_Role_CB.getItems().addAll("Admin", "Employee", "TeamLeader", "ProjectManager");
+
         columnID.setCellValueFactory(new PropertyValueFactory<>("ID"));
         columnUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
         columnPassword.setCellValueFactory(new PropertyValueFactory<>("password"));
         columnRole.setCellValueFactory(new PropertyValueFactory<>("role"));
 
+        projectName.setCellValueFactory(new PropertyValueFactory<>("projectName"));
+        projectID.setCellValueFactory(new PropertyValueFactory<>("projectID"));
+
         usersTable.setItems(userList);
         viewUsers();
+        viewProjects();
     }
 
     public void clickOnAddButton(ActionEvent actionEvent) {

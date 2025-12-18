@@ -77,7 +77,7 @@
             <TableView fx:id="projectsTable" prefWidth="151.0">
                 <columns>
                     <TableColumn fx:id="projectName" prefWidth="85" text="Project_Name" />
-                    <TableColumn fx:id="ProjectID" prefWidth="65" text="Project_ID" />
+                    <TableColumn fx:id="projectID" prefWidth="65" text="Project_ID" />
                 </columns>
             </TableView>
 

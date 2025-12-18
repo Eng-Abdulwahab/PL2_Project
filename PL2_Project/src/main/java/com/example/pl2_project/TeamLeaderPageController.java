@@ -24,6 +24,7 @@ public class TeamLeaderPageController {
     private final File tasksFile = new File("PL2_Project/src/main/java/ClassesOfTheProject/Files/tasksFile.txt");
     private final File penaltiesFile = new File("PL2_Project/src/main/java/ClassesOfTheProject/Files/penaltiesFile.txt");
     private final File vacationFile = new File("PL2_Project/src/main/java/ClassesOfTheProject/Files/vacations.txt");
+    private final File projectFile = new File("PL2_Project/src/main/java/ClassesOfTheProject/Files/project.txt");
 
     @FXML
     public TableView<Vacation> vacationTable;
@@ -43,6 +44,8 @@ public class TeamLeaderPageController {
     public TableColumn<Task, String> colTaskName;
     @FXML
     public TableColumn<Task, String> colTaskId;
+    @FXML
+    public ComboBox<String> comboProject;
     @FXML
     private TextField penalatiestext;
     @FXML
@@ -99,12 +102,21 @@ public class TeamLeaderPageController {
 
         }else{
             int Id = rand.nextInt(200);
-            int projectNum = 2;
             String IdNum = Integer.toString(Id);
             Boolean completed = false;
             String completedSt= Boolean.toString(completed);
-            String project = "project"+Integer.toString(projectNum);
-            projectNum++;
+            String project = comboProject.getValue();
+
+            if(project == null)
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("You must enter the project name");
+                alert.showAndWait();
+                return;
+            }
+
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("SUCCESS");
             alert.setHeaderText(null);
@@ -182,6 +194,17 @@ public class TeamLeaderPageController {
                 ArrayList<String> info = FManager.Splitter(line);
                 String toCombo = info.get(0);
                 comboVacation.getItems().add(toCombo);
+            }
+        }
+
+        try(Scanner scanner = new Scanner(projectFile))
+        {
+            while(scanner.hasNextLine())
+            {
+                String line = scanner.nextLine();
+                ArrayList<String> info = FManager.Splitter(line);
+                String toCombo = info.get(0);
+                comboProject.getItems().add(toCombo);
             }
         }
 
