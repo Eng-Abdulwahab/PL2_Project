@@ -11,7 +11,7 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
-    <Label style="-fx-text-fill: #333333;" text="Employee DashBoard">
+    <Label style="-fx-text-fill: #333333;" text="Employee DashBoard" textFill="TEAL">
         <font>
             <Font size="22.0" />
         </font>
@@ -21,11 +21,11 @@
     <TitledPane animated="false" collapsible="false" text="Clock In/Out &amp; Working Hours Calculation">
         <VBox spacing="10.0" style="-fx-padding: 10;">
             <HBox alignment="CENTER_LEFT" spacing="10.0">
-                <Button fx:id="btnClockIn" onAction="#handleClockAction" text="Clock In Now" />
-                <Button fx:id="btnClockOut" onAction="#handleClockAction" text="Clock Out Now" />
-                <Label fx:id="lblCurrentStatus" style="-fx-font-weight: bold; -fx-text-fill: #007bff;" text="Status: Logged Out" HBox.hgrow="ALWAYS" />
+                <Button fx:id="btnClockIn" onAction="#handleClockAction" style="-fx-background-color: teal; -fx-background-radius: 20;" text="Clock In Now" textFill="WHITE" />
+                <Button fx:id="btnClockOut" onAction="#handleClockAction" style="-fx-background-color: teal; -fx-background-radius: 20;" text="Clock Out Now" textFill="WHITE" />
+                <Label fx:id="lblCurrentStatus" style="-fx-font-weight: bold; -fx-text-fill: #007bff;" text="Status: Logged Out" textFill="TEAL" HBox.hgrow="ALWAYS" />
             </HBox>
-            <Label text="Monthly Attendance Record:" />
+            <Label text="Monthly Attendance Record:" textFill="TEAL" />
             <TableView fx:id="attendanceTable" prefHeight="150.0">
                 <columns>
                     <TableColumn fx:id="colInTime" prefWidth="263.20003068447113" text="Clock In" />
@@ -38,16 +38,16 @@
 
     <TitledPane animated="false" collapsible="false" text="Assigned Tasks (View &amp; Complete)">
         <VBox prefHeight="425.0" prefWidth="977.0" spacing="10.0" style="-fx-padding: 10;">
-            <Label text="Select the task when it is finished:" />
-         <ComboBox fx:id="availTasks" prefWidth="150.0" promptText="Tasks" />
-         <Button fx:id="btnFinishTask" mnemonicParsing="false" onAction="#handleFinishTaskAction" prefHeight="26.0" prefWidth="149.0" text="Finish Task" />
+            <Label text="Select the task when it is finished:" textFill="TEAL" />
+            <ComboBox fx:id="availTasks" prefWidth="150.0" promptText="Tasks" />
+            <Button fx:id="btnFinishTask" mnemonicParsing="false" onAction="#handleFinishTaskAction" prefHeight="26.0" prefWidth="149.0" style="-fx-background-color: teal; -fx-background-radius: 20;" text="Finish Task" textFill="WHITE" />
             <TableView fx:id="tasksTable" prefHeight="406.0" prefWidth="930.0">
                 <columns>
                     <TableColumn fx:id="colTaskId" prefWidth="113.59997117519379" text="Task Id" />
                     <TableColumn fx:id="colTaskName" prefWidth="128.80005645751953" text="Task Name" />
                     <TableColumn fx:id="colProject" prefWidth="132.8000030517578" text="Project" />
                     <TableColumn fx:id="colDueDate" prefWidth="217.59994506835938" text="Due Date" />
-               <TableColumn fx:id="colCompleted" prefWidth="84.7999267578125" text="Completed" />
+                    <TableColumn fx:id="colCompleted" prefWidth="84.7999267578125" text="Completed" />
                 </columns>
             </TableView>
         </VBox>
@@ -56,19 +56,19 @@
     <HBox spacing="15" VBox.vgrow="ALWAYS">
         <TitledPane animated="false" collapsible="false" text="Request Vacation" HBox.hgrow="ALWAYS">
             <VBox spacing="8.0" style="-fx-padding: 10;">
-                <Label text="Start Date:" />
+                <Label text="Start Date:" textFill="TEAL" />
                 <DatePicker fx:id="dpStartDate" />
-                <Label text="End Date:" />
+                <Label text="End Date:" textFill="TEAL" />
                 <DatePicker fx:id="dpEndDate" />
-                <Label text="Reason:" />
+                <Label text="Reason:" textFill="TEAL" />
                 <TextArea fx:id="txtVacationReason" prefRowCount="3" wrapText="true" />
-                <Button fx:id="btnSubmit" onAction="#handleVacationAction" text="Submit Request" />
+                <Button fx:id="btnSubmit" onAction="#handleVacationAction" style="-fx-background-color: teal; -fx-background-radius: 20;" text="Submit Request" textFill="WHITE" />
             </VBox>
         </TitledPane>
 
         <TitledPane animated="false" collapsible="false" text="View Penalties" HBox.hgrow="ALWAYS">
             <VBox spacing="10.0" style="-fx-padding: 10;">
-                <Label text="Recorded Penalties:" />
+                <Label text="Recorded Penalties:" textFill="TEAL" />
                 <TableView fx:id="penaltiesTable" prefHeight="170.0">
                     <columns>
                         <TableColumn fx:id="colPenaltyDate" prefWidth="100.0" text="Name" />
