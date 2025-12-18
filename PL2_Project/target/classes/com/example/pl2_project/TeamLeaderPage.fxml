@@ -108,6 +108,12 @@
       <ComboBox fx:id="comboVacation" layoutX="436.0" layoutY="65.0" prefWidth="150.0" />
       <Label layoutX="436.0" layoutY="38.0" prefHeight="18.0" prefWidth="150.0" text="Select a vacation to accept" />
       <Button fx:id="btnAcceptVacation" layoutX="455.0" layoutY="110.0" mnemonicParsing="false" onAction="#handleVacationAcception" prefHeight="26.0" prefWidth="112.0" text="Accept Vacation" />
+      <TableView fx:id="ReportTable" layoutX="16.0" layoutY="673.0" prefHeight="200.0" prefWidth="572.0">
+        <columns>
+          <TableColumn fx:id="colEmployee" prefWidth="92.79998779296875" text="Employee" />
+          <TableColumn fx:id="colReport" prefWidth="476.800048828125" text="Report" />
+        </columns>
+      </TableView>
 
     </children>
 

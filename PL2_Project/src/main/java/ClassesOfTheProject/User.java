@@ -9,7 +9,6 @@ public class User {
     private SimpleStringProperty password;
     private SimpleStringProperty ID;
     private SimpleStringProperty role;
-    Random random = new Random();
 
     public User(String ID, String username, String password, String role) {
         this.username = new SimpleStringProperty(username);

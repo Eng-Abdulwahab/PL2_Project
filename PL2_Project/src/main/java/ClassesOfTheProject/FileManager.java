@@ -3,7 +3,6 @@ package ClassesOfTheProject;
 import javafx.scene.control.Alert;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -32,13 +31,6 @@ public class FileManager {
     // isExist
     public boolean isExist(String id,File file) throws FileNotFoundException{
         if(findLine(id,file).equals("not found")){
-            return false;
-        }
-        return true;
-    }
-
-    public boolean isRoleExist(String role,File file) throws FileNotFoundException{
-        if(findLine(role,file).equals("not found")){
             return false;
         }
         return true;

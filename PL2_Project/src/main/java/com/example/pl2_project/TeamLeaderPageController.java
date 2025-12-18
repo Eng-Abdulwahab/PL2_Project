@@ -1,6 +1,7 @@
 package com.example.pl2_project;
 
 import ClassesOfTheProject.FileManager;
+import ClassesOfTheProject.Report;
 import ClassesOfTheProject.Task;
 import ClassesOfTheProject.Vacation;
 import javafx.collections.FXCollections;
@@ -25,6 +26,7 @@ public class TeamLeaderPageController {
     private final File penaltiesFile = new File("PL2_Project/src/main/java/ClassesOfTheProject/Files/penaltiesFile.txt");
     private final File vacationFile = new File("PL2_Project/src/main/java/ClassesOfTheProject/Files/vacations.txt");
     private final File projectFile = new File("PL2_Project/src/main/java/ClassesOfTheProject/Files/project.txt");
+    private final File reportFile = new File("PL2_Project/src/main/java/ClassesOfTheProject/Files/report.txt");
 
     @FXML
     public TableView<Vacation> vacationTable;
@@ -47,6 +49,12 @@ public class TeamLeaderPageController {
     @FXML
     public ComboBox<String> comboProject;
     @FXML
+    public TableView<Report> ReportTable;
+    @FXML
+    public TableColumn<Report, String> colEmployee;
+    @FXML
+    public TableColumn<Report, String> colReport;
+    @FXML
     private TextField penalatiestext;
     @FXML
     private TextField reasontext,Tasktext;
@@ -60,6 +68,9 @@ public class TeamLeaderPageController {
 
     @FXML
     ObservableList<Task> taskRows= FXCollections.observableArrayList();
+
+    @FXML
+    ObservableList<Report> reportRow = FXCollections.observableArrayList();
 
 
     public void sendpenalaties(){
@@ -171,10 +182,33 @@ public class TeamLeaderPageController {
                         info.get(3),
                         info.get(4)
                 );
+                String completed= info.get(4);
+                if(completed.equals("true"))
+                {
                 taskRows.add(task);
+                }
             }
         }
         taskTable.setItems(taskRows);
+    }
+
+    public void viewReport()
+    {
+        reportRow.clear();
+        try(Scanner scn = new Scanner(reportFile))
+        {
+           while(scn.hasNextLine())
+           {
+               String line = scn.nextLine();
+               ArrayList<String> info = FManager.Splitter(line);
+               Report report = new Report(info.get(0), info.get(1), info.get(2));
+               reportRow.add(report);
+           }
+        }catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        ReportTable.setItems(reportRow);
     }
 
     public void initialize() throws FileNotFoundException {
@@ -184,6 +218,9 @@ public class TeamLeaderPageController {
 
         colTaskName.setCellValueFactory(new PropertyValueFactory<>("taskName"));
         colTaskId.setCellValueFactory(new PropertyValueFactory<>("taskID"));
+
+        colEmployee.setCellValueFactory(new PropertyValueFactory<>("employee"));
+        colReport.setCellValueFactory(new PropertyValueFactory<>("report"));
 
 
         try(Scanner scn = new Scanner(vacationFile))
@@ -211,7 +248,7 @@ public class TeamLeaderPageController {
         viewVacation();
         viewTask();
         vacationTable.setItems(rows);
-
+        viewReport();
     }
 
     public void handleVacationAcception(ActionEvent actionEvent) throws FileNotFoundException {
